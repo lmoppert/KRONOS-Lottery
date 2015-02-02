@@ -1,0 +1,12 @@
+# Mandatory packages
+django
+django-crispy-forms
+django-tables2
+django-suit
+mysql-python
+docutils
+
+# Optional pachages for development server
+django-debug-toolbar
+django-extensions
+werkzeug
