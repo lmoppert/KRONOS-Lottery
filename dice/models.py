@@ -2,6 +2,7 @@
 
 from django.contrib.auth.models import User
 from django.db import models
+from datetime import datetime
 
 
 class Employee(models.Model):
@@ -24,7 +25,14 @@ class Event(models.Model):
     participant_number = models.IntegerField()
     schedule = models.DateField()
     deadline = models.DateField()
+    diced = models.BooleanField(default=False)
     candidates = models.ManyToManyField(User, through='Candidate')
+
+    @property
+    def past_deadline(self):
+        """Return True if the deadline has been passed."""
+
+        return self.deadline > datetime.now()
 
 
 class Candidate(models.Model):
