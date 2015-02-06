@@ -3,6 +3,7 @@ django
 django-crispy-forms
 django-tables2
 django-suit
+django-ldap-sync
 mysql-python
 docutils
 

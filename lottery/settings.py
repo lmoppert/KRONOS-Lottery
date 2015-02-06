@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 
 """
 
-from secrets import DB_PASS
+from secrets import DB_PASS, SECRET_KEY, LDAP_USER_PW
 from django.conf import global_settings
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -44,6 +44,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django_tables2',
     'django_extensions',
+    'ldap_sync',
     'dice',
 )
 
@@ -96,3 +97,17 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# Settings for LDAP synchronisation
+LDAP_SYNC_URI = "ldap://lev-srv-112.eu.nli.net:389"
+LDAP_SYNC_BASE = "OU=EU,DC=EU,DC=NLI,DC=NET"
+LDAP_SYNC_BASE_USER = "CN=AD Query,OU=Applications,OU=Users,OU=LEV,OU=D," \
+    "OU=EU,DC=EU,DC=NLI,DC=NET"
+LDAP_SYNC_BASE_PASS = LDAP_USER_PW
+LDAP_SYNC_USER_FILTER = "(&(objectCategory=person)(objectClass=User))"
+LDAP_SYNC_USER_ATTRIBUTES = {
+    "userPrincipalName": "username",
+    "givenName": "first_name",
+    "sn": "last_name",
+    "mail": "email",
+}
