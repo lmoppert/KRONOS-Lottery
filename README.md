@@ -24,3 +24,11 @@ user should go into a file called `secrets.py` in the same directory where the `
 lives. Define the password as follow:
 
     DB_PASS = 'yor secret password'
+
+After this, the management command should be able to communicate with the database. Now migrate:
+
+    python manage.py migrate
+
+And now you can start the development server:
+
+    python manage.py runserver
